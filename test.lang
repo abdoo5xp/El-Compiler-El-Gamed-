@@ -1,0 +1,12 @@
+PRINT "HELLO WORLD"
+print "HELLO DEAR"
+
+1321
+
+$s_v = "wow"
+$n_v = 10+2
+
+$s_v_2 = $s_v
+
+print $n_v
+print $s_v_2
