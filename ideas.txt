@@ -14,7 +14,9 @@ in Lexer.py:
 			Done!(the evaluate Fn)
 		#TODO:What if we read the whole equation then start searching about () then */ then +-  
 			Didn't try it but the problem is solved.
-
+	line 36:
+		#TODO:allow comments in your code xD xD 
+			Done!
 	line 47:
 		#TODO:Allow variables to have numbers.
 			Done!
@@ -25,10 +27,14 @@ in Lexer.py:
 
 	line 69:
 		#TODO:we can also add ERROR invalid variable name,(e.x)we can say if tok in special characters var = 0 then print("Invalid variable name") then exit() 
-in Paarser:
+in Parser:
 	line 9:
 		#NOTE:In his code the first if condition checks on i+1 so it gives Out_Of_Index_ERROR if we 
 		don't use the word print.
+	line 14:
+		#TODO: add option to print variables inside strings like c.(e.x) print "age = %d" $age
+		#Notes:-string.replace is not working nor string.strip()
+		       -Try the commented code 
 in exc:
 	line 50:
 		#TODO: Implement the parenthes here.(using recursion).
