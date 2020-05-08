@@ -1,4 +1,5 @@
 import exc as ex 
+// ahaaa
 
 symbol_table = {}
 
