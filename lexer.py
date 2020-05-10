@@ -1,9 +1,11 @@
 
+
 def lex(filecontents):
 	tokens = []
 	tok = ""
 	string = ""
 	num = ""
+	less = "blalal"
 	exp = ""
 	condition = ""
 	iscomment = 0
@@ -13,6 +15,8 @@ def lex(filecontents):
 	varstarted = 0
 	var = ""     
 	special_characters = "~!@#$%^&*()+/*-`<>"
+	operators = "<>&|!=()"
+	#print("filecontents before list ",filecontents)
 	filecontents = list(filecontents)
 	#print(filecontents)
 	for char in filecontents:
@@ -20,7 +24,7 @@ def lex(filecontents):
 		if tok in " \t":
 			if state == 0:
 				tok = ""
-		elif tok == "\n" or tok == "<EOF>" :  # to read multiple lines 
+		elif tok == "\n" or tok == "<EOF>" or tok == ":":  # to read multiple lines 
 			if exp != "" and isexp == 1:
 				#print(exp + "Exp")
 				tokens.append("EXP:" + exp)
@@ -33,6 +37,11 @@ def lex(filecontents):
 				tokens.append("VAR:" + var)
 				varstarted = 0  
 				var = ""
+			if iscondition :
+				iscondition = 0
+				tokens.append(tok)
+				#print("iscondition tok appended = ",tok) 
+				#tokens = tokens + condlexer(condition)
 			tok=""
 			iscomment = 0
 		elif tok is "#":
@@ -47,48 +56,65 @@ def lex(filecontents):
 			tok=""
 		elif tok.upper() == "IF":       #To take upper and lower case "input"
 			tokens.append("IF")
-			#iscondition = 1          lets continue in another time 
+			iscondition = 1          # lets continue in another time 
 			tok=""
-		elif tok.upper() == "THEN":       #To take upper and lower case "input"
-			if exp != "" and isexp == 0:
-				#print(exp +"num")
-				tokens.append("NUM:" + exp)
-				exp = ""
-			tokens.append("THEN")
-			tok=""
-		elif tok.upper() == "ENDIF":       #To take upper and lower case "input"
-			tokens.append("ENDIF")
-			tok=""
+		# elif tok == ":":       #To take upper and lower case "input"
+		# 	if exp != "" and isexp == 0:
+		# 		#print(exp +"num")
+		# 		tokens.append("NUM:" + exp)
+		# 		exp = ""
+		# 	tokens.append("THEN")
+		# 	tok=""
+		# elif tok.upper() == "ENDIF":       #To take upper and lower case "input"
+		# 	tokens.append("ENDIF")
+		# 	tok=""
 		# elif iscondition:
 		# 	condition += tok
 		# 	tok=""
 		elif tok in "0123456789" and varstarted == 0: #i have added this so we can variable names can have numbers 
 			exp += tok  
 			tok = ""
-		elif tok in "+-*/()%":
+		elif tok in "+-*/()%" and iscondition == 0: 
 			isexp = 1
 			exp += tok
 			tok = ""
-		elif tok == "=" and state == 0:
-			if exp != "" and isexp == 0:
+		elif tok in "}{":
+			tokens.append(tok)
+			tok = ""
+		elif tok in operators and state == 0:
+			if exp != "" and isexp == 0:            # add isexp == 1 for recuursive condition
 				#print(exp +"num")
-				tokens.append("NUM:" + exp)
+				tokens.append("NUM:" + exp) 
+				tokens.append(tok)   
 				exp = ""
-			if var != "":               
-				tokens.append("VAR:" + var)    
+			elif var != "":               
+				tokens.append("VAR:" + var)  
+				tokens.append(tok)   
 				varstarted = 0  
 				var = ""
-			if tokens[-1] is "EQUALS":
-				tokens[-1] = "EQEQ"
 			else:
-				tokens.append("EQUALS")
+				if tok == "<":   
+					# less = tok
+					continue
+				# elif less in tok:  # tok <=   <<        # <=              < ???
+				# 	print("i am in less")
+				# 	#tokens.append("<")
+				# 	tokens.append(tok[-1])
+				# 	print(tok[-1])
+				else:
+					tokens.append(tok)  
 			tok = ""
+			# if tokens[-1] is "EQUALS":  # when you find an operator check on the next token if it is and operator too so it is a new operator (in parser)
+			# 	tokens[-1] = "EQEQ"
+			# else:
+			# 	tokens.append("EQUALS")
+			# tok = ""
 		elif tok == "$" and state == 0:
 			varstarted = 1
 			var += tok
 			tok = ""
 		elif varstarted == 1:
-			if tok in special_characters:
+			if tok in special_characters:   #terminates if meets a special character inside var name 
 				varstarted = 0
 				continue 
 			# if tok in "<":        # if the file ends with a variable the <EOF> gets appended to the var name and the program doesn't get into the condition of tok == <EOF>
@@ -113,6 +139,9 @@ def lex(filecontents):
 			tok = ""
 			
 	#print (exp)
+	#trying = ["tok1","tok2"]
+	#print(map(str,trying))
+	#tokens.append(map(str,trying)) 
 	print(tokens)
-	return tokens
-	#return ''
+	#return tokens
+	return ''

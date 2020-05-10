@@ -1,14 +1,11 @@
-#PRINT "HELLO WORLD"
-#print "HELLO DEAR"
-input "Enter some shitty input: " $input_var
-#1321
+if 20 < 50 :
+{
+	if 20 != $nasr :
+	{
+	print "hello nasr"
+	print "hello nasr"
+	print "hello nasr"
+	}
+}
 
-$s_v = "wow"
-$n_v = 10+2
-
-$s_v_2 = $s_v
-
-#print $n_v
-#print $s_v_2
-print "this is input variable you entered idiot: %d" 
-print $input_var
+if (20 && 30) :
