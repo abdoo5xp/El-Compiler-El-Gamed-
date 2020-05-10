@@ -1,6 +1,7 @@
 in run.py:
 	#TODO:make a condition to make the user choose to run a file or to open the interpreter >
-	#TODO:we can also check on the argv[1] it exists execute the file if not open the interpreter. 
+	#TODO:we can also check on the argv[1] if it exists execute the file if not open the interpreter. 
+		Done!
 
 in Lexer.py:
 	line 2:
@@ -20,7 +21,6 @@ in Lexer.py:
 	line 47:
 		#TODO:Allow variables to have numbers.
 			Done!
-			
 	line 60:
 		#TODO:Modify this to make variables are declared without dollar sign. 
 		#TODO:Maybe we can try ischar() fn, elif tok.ischar() and state == 0,but then we have to put print inside of it.
@@ -34,10 +34,11 @@ in Parser:
 	line 14:
 		#TODO: add option to print variables inside strings like c.(e.x) print "age = %d" $age
 		#Notes:-string.replace is not working nor string.strip()
-		       -Try the commented code 
+		       -Try the commented code
+	line 50:
+	#TODO:when you input sth with entering a variable,it should print it. 
 in exc:
 	line 50:
 		#TODO: Implement the parenthes here.(using recursion).
 			Done!
-			// gamed yzmili
 
