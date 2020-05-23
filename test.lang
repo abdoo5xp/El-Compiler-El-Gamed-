@@ -1,14 +1,18 @@
 #PRINT "HELLO WORLD"
 #print "HELLO DEAR"
-input "Enter some shitty input: " $input_var
+#input "Enter some shitty input: " 
 #1321
-
-$s_v = "wow"
-$n_v = 10+2
-
-$s_v_2 = $s_v
-
+#input "Enter some var input: " $nasr
+#$s_v = "wow"
+#$n_v = 10+2
+#print $nasr
+#$s_v_2 = $s_v
 #print $n_v
 #print $s_v_2
-print "this is input variable you entered idiot: %d" 
-print $input_var
+#print $input_var
+
+if 20 > 50 || 10 > 5 && 10 >= 20:
+{
+	print "i am in condition"
+}
+

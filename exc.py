@@ -39,7 +39,7 @@ def evaluate(num_stack):
 	# prec = num_stack
 	#while '*' in prec or '/' in prec or '%' in prec:
 	# 34an eval exp bterga3ly "" elements ba3d el parentheses.
-	print(num_stack)
+	#print(num_stack)
 	 #((5+9)*8)
 	while '' in num_stack:
 		for i,val in enumerate(num_stack):
@@ -123,7 +123,7 @@ def evaluate(num_stack):
 	# del prec 
 	# del num_stack
 
-	print("result:",prec[-1])
+	#print("result:",prec[-1])
 	return prec[-1]
 
 
@@ -139,3 +139,23 @@ def dada(num1,op,num2):
 		return str(num1+num2)
 	elif op == "-":
 		return str(num1-num2)
+
+def evalCond(oper1,op,oper2):   # test this func by printing its output 
+	oper1 = float(oper1)
+	oper2 = float(oper2)
+	if op == "<":
+		return (oper1 < oper2)
+	elif op == ">":
+		return (oper1 > oper2)
+	elif op == "==":
+		return (oper1 == oper2)
+	elif op == "<=":
+		return (oper1 <= oper2)
+	elif op == ">=":
+		return (oper1 >= oper2)
+	elif op == "|":                        # bitwise or 
+		return (oper1 | oper2)
+	elif op == "&":						   # bitwise and 
+		return (oper1 & oper2)
+
+
